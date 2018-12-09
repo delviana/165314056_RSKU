@@ -76,22 +76,21 @@
                                             <a href="#" class="dropbtn">Pasien</a>
                                             <div class="dropdown-content">
                                                 <a href="pasien_1.html">Daftar Pasien</a>
-                                                <a href="addPasien.html">Tambah Pasien</a>
-                                                <a href="cariPasien_1.html">Cari Pasien</a>
+                                                <a href="addPasien.html">Daftar Pasien</a>
+                                                <a href="cariPasien.html">Cari Pasien</a>
                                             </div>
                                         </li>
                                         <li class="dropdown">
                                             <a href="#" class="dropbtn">Antrian</a>
                                             <div class="dropdown-content">
                                                 <a href="Antrian_1.html">Daftar Antrian</a>
-                                                <a href="addAntrian.html">Tambah Antrian</a>
                                             </div>
                                         </li>
                                         <li class="dropdown">
                                             <a href="#" class="dropbtn">Maps</a>
                                             <div class="dropdown-content">
                                                 <a href="maps.html">Lihat Maps</a>
-                                                <a href="addMaps.html">Tambah Maps</a>
+                                                <a href="addMps.html">Tambah Maps</a>
                                             </div>
                                         </li>
                                         <ul>
@@ -119,6 +118,7 @@
 
     <br><br><br><br/>
     <br><br><br><br/>
+
 
     <style>
         li a, .dropbtn {
@@ -178,9 +178,6 @@
         }
     </style>
 
-
-
-
     <!-- spacer section -->
     <section class="spacer green">
         <div class="container">
@@ -198,116 +195,130 @@
         <div class="container">
 
             <div class="container form" >
-                <center><h2>Form Tambah Maps</h2></center>
+                <center><h2>Form Tambah Pasien</h2></center>
 
                 <br/>
 
                 <form  onsubmit="return make_json(this)" method="POST">
+                    <div class="form-group">
+                        <label>No Rekam Medis</label>
+                        <input type="text" class="form-control" name="noRm" placeholder="Masukan nomer rekam medis">        
 
-                    <div class="form-group"> 
-                        <label>Latitude</label>
-                        <input type="text" class="form-control" name="lat" placeholder="Masukan Latitude">
+                        <div class="form-group"> 
+                            <label>Nama</label>
+                            <input type="text" class="form-control" name="nama" placeholder="Masukan nama pasien">
+                        </div>
+                        <div class="form-group"> 
+                            <label>Alamat</label>
+                            <input type="text" class="form-control" name="alamat" placeholder="Masukan alamat">
+                        </div>
+                        <div class="form-group"> 
+                            <label>NIK</label>
+                            <input type="text" class="form-control" name="nik" placeholder="Masukan NIK">
+                        </div>
+                        <div class="form-group"> 
+                            <label>Tanggal Lahir</label>
+                            <input type="text" class="form-control" name="tanggalLahir" placeholder="Masukan Tahun/Tgl/bulan">
+                        </div>
+                        <div class="form-group"> 
+                            <label>Kelamin</label>
+                            <input type="text" class="form-control" name="kelamin" placeholder="Masukan Jenis Kelamain">
+                        </div>
+
+                        <center><button type="submit" class="btn btn-outline-primary">Simpan</button></center>
                     </div>
-                    <div class="form-group"> 
-                        <label>Longitude</label>
-                        <input type="text" class="form-control" name="long" placeholder="Masukan Longitude">
+                </form>
+                <pre id="output">
+                </pre>
+
+                <script>
+                    function make_json(form) {
+                        var json = {
+                            "noRm": form.noRm.value,
+                            "nama": form.nama.value,
+                            "alamat": form.alamat.value,
+                            "nik": form.nik.value,
+                            "tanggalLahir": form.tanggalLahir.value,
+                            "kelamin": form.kelamin.value
+                        };
+
+                        var html = JSON.stringify(json, 0, 100);
+                        var url = "http://202.94.83.190:8080/165314056_serviceku/webresources/Pasien/addPasien";
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", url, false);
+                        xhr.setRequestHeader("Content-type", "application/json");
+                        xhr.send(html);
+                        document.getElementById("output").innerHTML = "Save Succesfull";
+                        return false;
+
+
+                    }
+                </script>
+                </section>
+
+                <footer>
+                    <div class="container">
+                        <div class="row">
+                            <div class="span6 offset3">
+                                <ul class="social-networks">
+                                    <li><a href="#"><i class="icon-circled icon-bgdark icon-instagram icon-2x"></i></a></li>
+                                    <li><a href="#"><i class="icon-circled icon-bgdark icon-twitter icon-2x"></i></a></li>
+                                    <li><a href="#"><i class="icon-circled icon-bgdark icon-dribbble icon-2x"></i></a></li>
+                                    <li><a href="#"><i class="icon-circled icon-bgdark icon-pinterest icon-2x"></i></a></li>
+                                </ul>
+                                <p class="copyright">
+                                    &copy; Delviana. All rights reserved.
+                                <div class="credits">
+
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group"> 
-                        <label>Name</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukan Nama">
-                    </div>
-
-                    <center><button type="submit" class="btn btn-outline-primary">Simpan</button></center>
-            </div>
-            </form>
-            <pre id="output">
-            </pre>
-
-            <script>
-                function make_json(form) {
-                    var json = {
-                        "idKlinik": form.idKlinik.value,
-                        "nama": form.nama.value,
-                        "spesialis": form.spesialis.value
-                    };
-
-                    var html = JSON.stringify(json, 0, 100);
-                    var url = "http://202.94.83.190:8080/165314056_serviceku/webresources/Location/addLocation";
-
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", url, false);
-                    xhr.setRequestHeader("Content-type", "application/json");
-                    xhr.send(html);
-                    document.getElementById("output").innerHTML = "Save Succesfull";
-                    return false;
-
-
-                }
-            </script>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="span6 offset3">
-                    <ul class="social-networks">
-                        <li><a href="#"><i class="icon-circled icon-bgdark icon-instagram icon-2x"></i></a></li>
-                        <li><a href="#"><i class="icon-circled icon-bgdark icon-twitter icon-2x"></i></a></li>
-                        <li><a href="#"><i class="icon-circled icon-bgdark icon-dribbble icon-2x"></i></a></li>
-                        <li><a href="#"><i class="icon-circled icon-bgdark icon-pinterest icon-2x"></i></a></li>
-                    </ul>
-                    <p class="copyright">
-                        &copy; Delviana. All rights reserved.
-                    <div class="credits">
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ./container -->
-    </footer>
-    <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-    <!-- nav -->
-    <script src="js/jquery.scrollTo.js"></script>
-    <script src="js/jquery.nav.js"></script>
-    <!-- localScroll -->
-    <script src="js/jquery.localScroll.js"></script>
-    <!-- bootstrap -->
-    <script src="js/bootstrap.js"></script>
-    <!-- prettyPhoto -->
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <!-- Works scripts -->
-    <script src="js/isotope.js"></script>
-    <!-- flexslider -->
-    <script src="js/jquery.flexslider.js"></script>
-    <!-- inview -->
-    <script src="js/inview.js"></script>
-    <!-- animation -->
-    <script src="js/animate.js"></script>
-    <!-- twitter -->
-    <script src="js/jquery.tweet.js"></script>
-    <!-- custom functions -->
-    <script src="js/custom.js"></script>
+                    <!-- ./container -->
+                </footer>
+                <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
+                <!-- jQuery -->
+                <script src="js/jquery.js"></script>
+                <!-- nav -->
+                <script src="js/jquery.scrollTo.js"></script>
+                <script src="js/jquery.nav.js"></script>
+                <!-- localScroll -->
+                <script src="js/jquery.localScroll.js"></script>
+                <!-- bootstrap -->
+                <script src="js/bootstrap.js"></script>
+                <!-- prettyPhoto -->
+                <script src="js/jquery.prettyPhoto.js"></script>
+                <!-- Works scripts -->
+                <script src="js/isotope.js"></script>
+                <!-- flexslider -->
+                <script src="js/jquery.flexslider.js"></script>
+                <!-- inview -->
+                <script src="js/inview.js"></script>
+                <!-- animation -->
+                <script src="js/animate.js"></script>
+                <!-- twitter -->
+                <script src="js/jquery.tweet.js"></script>
+                <!-- custom functions -->
+                <script src="js/custom.js"></script>
 
 
 
 
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
-    <script src="js/plugins.js"></script>
-    <!-- Active js -->
-    <script src="js/active.js"></script>
+                <script src="js/jquery/jquery-2.2.4.min.js"></script>
+                <!-- Popper js -->
+                <script src="js/popper.min.js"></script>
+                <!-- Bootstrap js -->
+                <script src="js/bootstrap.min.js"></script>
+                <!-- Plugins js -->
+                <script src="js/plugins.js"></script>
+                <!-- Active js -->
+                <script src="js/active.js"></script>
 
-</body>
+                </body>
 
-</html>               
-</body>
+                </html>               
+                </body>
 
-</html>
+                </html>
