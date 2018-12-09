@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="style.css">
 
     </head>
-
+    
     <body>
         <!-- Preloader -->
         <div id="preloader">
@@ -158,7 +158,7 @@
             }
             h1 {
                 border-bottom: 3px solid #cc9900;
-                color: #996600;
+                color: red;
                 font-size: 30px;
                 background: scrollbar
             }
@@ -169,16 +169,20 @@
 
             }
             table tr:nth-child(odd) {
-                background-color: #f1f1f1;
+                background-color: green;
             }
             table tr:nth-child(even) {
-                background-color: #ffffff;
+                background-color: blue;
+            }
+            p {
+                color: magenta;
             }
 
         </style>
 
 
          <section>
+             
              <div class="container formTAK">
             <div id="antrian">
                 <h2>Form Cari Pasien dan Tambah Antrian</h2>
@@ -203,7 +207,7 @@
                     </div>
                     <div class="form-group"> 
                         <label>Klinik</label>
-                        <input type="text" class="form-control" id="klinik" placeholder="Masukan Klinik">
+                        <input type="text" class="form-control" id="namaKlinik" placeholder="Masukan Klinik">
                     </div>
                     <button type="submit" class="btn btn-outline-primary btn-sub" data-toggle="modal" data-target="#myModal2">Submit</button>
                     <!-- The Modal -->
@@ -233,6 +237,7 @@
                 </form>
             </div>
         </div>
+         
   <script>
 
             function make_json2(form) {
@@ -241,7 +246,7 @@
                     "noRm": form.nik.value,
                     "nama": form.nama.value,
                     "alamat": form.alamat.value,
-                    "namaKlinik": form.klinik.value
+                    "namaKlinik": form.namaKlinik.value
                 };
 
                 var html = JSON.stringify(json, 0, 100);
@@ -256,7 +261,7 @@
             }
 
             function loadDoc() {
-                var url = "http://202.94.83.190:8080/165314056_servicesr/webresources/pasien/cariPasien?nik=" + nik.value;
+                var url = "http://202.94.83.190:8080/165314056_serviceku/webresources/Pasien/cariPasien?nik=" + nik.value;
                 
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", url, true);
