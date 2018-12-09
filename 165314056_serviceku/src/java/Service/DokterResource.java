@@ -6,11 +6,7 @@
 package Service;
 
 import Helper.DokterHelper;
-import Helper.KlinikHelper;
-import Helper.PasienHelper;
 import Pojos.Dokter;
-import Pojos.Klinik;
-import Pojos.Pasien;
 import com.google.gson.Gson;
 import java.util.List;
 import javax.ws.rs.core.Context;

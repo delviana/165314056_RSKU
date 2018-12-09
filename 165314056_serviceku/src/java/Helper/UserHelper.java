@@ -22,7 +22,7 @@ public class UserHelper {
     }
     public User Login(String email, String password) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
-        String q = "From User a where a.email=:email AND a.password =:password";
+        String q = "From User u where u.email=:email AND u.password =:password";
         Query query = session.createQuery(q);
         query.setParameter("email", email);
         query.setParameter("password", password);

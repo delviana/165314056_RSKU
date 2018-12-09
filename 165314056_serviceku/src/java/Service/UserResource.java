@@ -20,9 +20,9 @@ import javax.ws.rs.core.MediaType;
 /**
  * REST Web Service
  *
- * @author Acer
+ * @author Suster
  */
-@Path("User")
+@Path("User/Login")
 public class UserResource {
 
     @Context
@@ -35,7 +35,7 @@ public class UserResource {
     }
 
     /**
-     * Retrieves representation of an instance of user.userresources
+     * Retrieves representation of an instance of User.UserResources
      *
      * @param email
      * @param password
@@ -48,7 +48,7 @@ public class UserResource {
     }
 
     /**
-     * PUT method for updating or creating an instance of userresources
+     * PUT method for updating or creating an instance of UserResources
      *
      * @param content representation for the resource
      */
