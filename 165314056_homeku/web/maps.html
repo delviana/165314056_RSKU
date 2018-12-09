@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>Simple Map</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+                height:200%;
+               }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h2><b>Alamat RS Harapan Kasih</b></h2>
+
+        <button type="button" onclick="loadDoc()">Click Here</button>
+
+        <p id="demo"></p>
+        <div id="map"></div>
+
+
+        <script>
+            var map;
+            function loadDoc() {
+
+                var url = "http://202.94.83.190:8080/165314056_serviceku/webresources/Location/getLocation";
+//                  var url = "http://202.94.83.190:8080/165314034_Platform_rsku_webservice/webresources/location/getLocation"
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("demo").innerHTML = this.responseText;
+
+                        var obj = JSON.parse(this.responseText);
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: {lat: obj[0].lat, lng: obj[0].lng},
+                            zoom: 8
+                        });
+                        var marker = [];
+                        for (var i = 0; i < obj.length; i++) {
+                            marker[i] = new google.maps.Marker({position: {lat: obj[i].lat, lng: obj[i].lng}, map: map});
+                        }
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnD2l64I6G6fUkPpc3D79Jcau30v8xEKE&callback=initMap"
+        async defer></script>
+    </body>
+</html>
